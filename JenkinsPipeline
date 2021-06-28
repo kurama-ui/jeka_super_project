@@ -27,7 +27,10 @@ pipeline {
         }    
         stage('Docker start container') {
             steps {
-                sh 'docker run --rm -it su'
+                sh 'docker run --rm -d su'
+                sh 'docker images'
+                sleep 5
+                sh 'docker ps -a'
             }
         }
     }
