@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-         stage('Cargo build') {
+        stage('Cargo build') {
             steps {
                 echo 'Cargo BUILD starting'
                 echo '----------Cargo Build Start----------'
@@ -25,9 +25,9 @@ pipeline {
                 sh 'docker build . --tag su'
             }
         }    
-        stage('Docker start container') {
+        stage('Docker push') {
             steps {
-                sh 'docker run --rm -d su'
+                sh 'docker push kuramaui/jenkinspush:su'
                 sh 'docker images'
                 sleep 5
                 sh 'docker ps -a'
