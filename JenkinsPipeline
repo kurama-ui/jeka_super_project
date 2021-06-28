@@ -22,12 +22,12 @@ pipeline {
         }
         stage('Docker Build image Dockerfile') {
             steps {
-                sh 'docker build . --tag SuperProject'
+                sh 'docker build . --tag su'
             }
         }    
         stage('Docker start container') {
             steps {
-                sh 'docker run --rm -it SuperProject'
+                sh 'docker run --rm -it su'
             }
         }
     }
