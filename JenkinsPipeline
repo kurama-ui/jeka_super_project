@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+
+    stages {
+         stage('Cargo build') {
+            steps {
+                echo 'Cargo build starting........'
+                echo '----------Cargo Build Start----------'
+                sh   'cargo build'
+                echo '----------Cargo Build End----------'
+                echo 'Cargo build success!!!!!'
+            }
+        }
+        stage('Cargo test') {
+            steps {
+                sh   'cargo test'
+            }
+        }
+        stage('Docker Build image Dockerfile') {
+            steps {
+                echo 'docker build'
+            }
+        }    
+        stage('Docker start container') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    }
+}
