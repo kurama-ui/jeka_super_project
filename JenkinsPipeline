@@ -22,12 +22,12 @@ pipeline {
         }
         stage('Docker Build image Dockerfile') {
             steps {
-                sh 'docker build . --tag su'
+                sh 'docker build . --tag kuramaui/jenkinspush1'
             }
         }    
         stage('Docker push') {
             steps {
-                sh 'docker push kuramaui/jenkinspush1:su'
+                sh 'docker push kuramaui/jenkinspush1:jenkinspipeline'
                 sh 'docker images'
                 sleep 5
                 sh 'docker ps -a'
