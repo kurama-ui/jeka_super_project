@@ -26,14 +26,16 @@ pipeline {
         }
         stage('Docker Build image Dockerfile') {
             steps {
-               sh 'docker build . --tag kuramaui/jenkinspush1:v1'
+               script {
+                   dockerImage = docker.build registry + ":v1"
+               }
             }
         }    
         stage('Docker push') {
             steps {
                 script {
                     docker.withRegistry( '', registryCredential ) {
-                        dockerImage.push('kuramaui/jenkinspush1:v1')
+                        dockerImage.push()
                     }
                 }
             }
