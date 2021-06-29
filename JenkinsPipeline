@@ -1,6 +1,10 @@
 pipeline {
+    environment {
+        registry = 'kuramaui/jenkinspush1
+        registryCredentials = 'dockerhub_kuramaui'
+        docekerImage = ''
+    }    
     agent any
-
     stages {
         stage('Cargo build') {
             steps {
@@ -22,15 +26,16 @@ pipeline {
         }
         stage('Docker Build image Dockerfile') {
             steps {
-                sh 'docker build . --tag kuramaui/jenkinspush1:v1'
+                sh 'docker build . --tag jenkinspush1:v1'
             }
         }    
         stage('Docker push') {
             steps {
-                sh 'docker push kuramaui/jenkinspush1:v1'
-                sh 'docker images'
-                sleep 5
-                sh 'docker ps -a'
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push(jenkinspush1:v1)
+                    }
+                }
             }
         }
     }
