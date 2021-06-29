@@ -2,7 +2,7 @@ pipeline {
     environment {
         registry = "kuramaui/jenkinspush1"
         registryCredential = 'dockerhub_kuramaui'
-        dockerImage = 'kuramaui/jenkinspush1:v1'
+        dockerImage = ''
     }    
     agent any
     stages {
@@ -33,7 +33,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry( '', registryCredential ) {
-                        dockerImage.push()
+                        dockerImage.push('kuramaui/jenkinspush1:v1')
                     }
                 }
             }
